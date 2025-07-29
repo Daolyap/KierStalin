@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Element Selection ---
     const initScreen = document.getElementById('initialization-screen');
-    const initTextElement = document.getElementById('init-text');
+    const matrixTitleContainer = document.getElementById('matrix-title');
     const progressBarContainer = document.getElementById('progress-bar-container');
     const progressBar = document.getElementById('progress-bar');
     const enterButton = document.getElementById('enter-button');
@@ -13,42 +13,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Core Functions ---
 
     /**
-     * Simulates a typewriter effect for a given element.
-     * @param {HTMLElement} element - The element to display the text in.
-     * @param {string} text - The text to type out.
-     * @param {function} onComplete - Callback function to run after typing is finished.
+     * Creates a matrix-style decoding animation for a string.
+     * @param {HTMLElement} container - The element to display the animation in.
+     * @param {string} finalString - The string to decode to.
+     * @param {function} onComplete - Callback function to run after animation is finished.
      */
-    function typewriter(element, text, onComplete) {
-        let i = 0;
-        element.innerHTML = ""; // Clear existing text
-        const typingInterval = setInterval(() => {
-            if (i < text.length) {
-                element.innerHTML += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(typingInterval);
-                if (onComplete) {
-                    onComplete();
-                }
-            }
-        }, 50); // Typing speed
+    function matrixDecodeEffect(container, finalString, onComplete) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789*&?#@$';
+        const revealDelay = 100; // ms delay between revealing each character
+        const scrambleDuration = 1000; // ms duration for each character's scramble effect
+
+        container.innerHTML = ''; // Clear container
+        const finalChars = finalString.split('');
+        
+        finalChars.forEach((char, index) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? ' ' : ''; // Handle spaces
+            container.appendChild(span);
+
+            if (char === ' ') return; // Don't animate spaces
+
+            // Delay the start of each character's animation
+            setTimeout(() => {
+                const scrambleInterval = setInterval(() => {
+                    span.textContent = chars[Math.floor(Math.random() * chars.length)];
+                }, 50);
+
+                // After the scramble duration, reveal the final character
+                setTimeout(() => {
+                    clearInterval(scrambleInterval);
+                    span.textContent = char;
+                    span.classList.add('settled');
+                }, scrambleDuration);
+
+            }, index * revealDelay);
+        });
+
+        // Trigger the onComplete callback after the entire animation is done
+        const totalDuration = (finalChars.length - 1) * revealDelay + scrambleDuration;
+        setTimeout(onComplete, totalDuration);
     }
 
     /**
      * Reveals the main content of the site with a staggered animation.
      */
     function revealSite() {
-        initScreen.classList.add('hidden'); // Hide the initialization screen
-        
+        initScreen.classList.add('hidden');
         mainHeader.classList.remove('hidden');
         mainContent.classList.remove('hidden');
         document.getElementById('socials').classList.remove('hidden');
-
-        // Scroll to top to ensure user sees the header
         window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Staggered fade-in for content sections
-        let delay = 300; // ms
+        let delay = 300;
         allContentSections.forEach((section) => {
             setTimeout(() => {
                 section.classList.add('visible');
@@ -62,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function initializeTheme() {
         const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
         if (savedTheme) {
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -102,10 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Set the initial theme
     initializeTheme();
 
-    // 2. Start the typewriter effect
-    const initText = "System check... OK. Loading modules...";
-    typewriter(initTextElement, initText, () => {
-        // 3. Once typing is done, show and fill the progress bar
+    // 2. Start the matrix decode animation
+    matrixDecodeEffect(matrixTitleContainer, "DEVIOUS.WORK", () => {
+        // 3. Once animation is complete, show and fill the progress bar
         progressBarContainer.classList.remove('hidden');
         setTimeout(() => {
             progressBar.style.width = '100%';

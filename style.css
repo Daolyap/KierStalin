@@ -1,3 +1,4 @@
+
 /* style.css */
 :root {
     --primary-color: #00ff7f; /* SpringGreen */
@@ -76,26 +77,26 @@ body {
     display: none;
 }
 
-#ascii-art {
-    color: var(--primary-color);
-    font-size: clamp(0.5rem, 4vw, 1rem);
-    text-shadow: 0 0 5px var(--glow-color);
+#matrix-title {
+    font-size: clamp(2rem, 10vw, 5rem);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-transform: uppercase;
     margin-bottom: 2rem;
 }
 
-#init-text-container {
-    font-size: 1.2rem;
-    min-height: 1.5rem; /* Reserve space to prevent layout shift */
+#matrix-title > span {
+    display: inline-block;
+    transition: all 0.5s ease-out;
+    color: var(--text-color); /* Default color for scrambling chars */
 }
 
-.cursor {
-    animation: blink 1s step-end infinite;
+#matrix-title > span.settled {
     color: var(--primary-color);
+    text-shadow: 0 0 10px var(--glow-color);
 }
-@keyframes blink {
-  from, to { visibility: hidden; }
-  50% { visibility: visible; }
-}
+
 
 #progress-bar-container {
     width: 70%;
