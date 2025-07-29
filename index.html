@@ -20,78 +20,94 @@
     <meta name="twitter:description" content="A retro-inspired corner of the internet.">
     <meta name="twitter:image" content="https://devious.work/og-image.png">
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- This div creates the CRT scanline and flicker effect over the entire page -->
+    <div class="crt-overlay"></div>
+
     <div id="initialization-screen" class="active">
         <pre id="ascii-art" aria-hidden="true">
-██████╗ ███████╗██╗   ██╗██╗ ██████╗ ██╗   ██╗
-██╔══██╗██╔════╝██║   ██║██║██╔═══██╗██║   ██║
-██║  ██║█████╗  ██║   ██║██║██║   ██║██║   ██║
-██║  ██║██╔══╝  ╚██╗ ██╔╝██║██║   ██║██║   ██║
-██████╔╝███████╗ ╚████╔╝ ██║╚██████╔╝╚██████╔╝
-╚═════╝ ╚══════╝  ╚═══╝  ╚═╝ ╚═════╝  ╚═════╝
+░███████   ░██████████ ░██    ░██ ░██████  ░██████   ░██     ░██   ░██████   
+░██   ░██  ░██         ░██    ░██   ░██   ░██   ░██  ░██     ░██  ░██   ░██  
+░██    ░██ ░██         ░██    ░██   ░██  ░██     ░██ ░██     ░██ ░██         
+░██    ░██ ░█████████  ░██    ░██   ░██  ░██     ░██ ░██     ░██  ░████████  
+░██    ░██ ░██          ░██  ░██    ░██  ░██     ░██ ░██     ░██         ░██ 
+░██   ░██  ░██           ░██░██     ░██   ░██   ░██   ░██   ░██   ░██   ░██  
+░███████   ░██████████    ░███    ░██████  ░██████     ░██████     ░██████  
         </pre>
-        <div id="init-text">Initializing system...</div>
-        <div id="progress-bar-container">
+        <!-- The text here will be populated by the typewriter effect in JavaScript -->
+        <div id="init-text-container">
+            <span id="init-text"></span><span class="cursor">_</span>
+        </div>
+        <div id="progress-bar-container" class="hidden">
             <div id="progress-bar"></div>
         </div>
-        <button id="enter-button" class="hidden">Enter</button>
+        <button id="enter-button" class="hidden">[ ENTER ]</button>
     </div>
 
     <header id="main-header" class="hidden">
         <nav>
-            <a href="#about">About</a>
-            <a href="#subdomains">Subdomains</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#socials">Socials</a>
-            <button id="theme-toggle">Toggle Theme</button>
+            <a href="#about" class="nav-link">> ABOUT</a>
+            <a href="#subdomains" class="nav-link">> SUBDOMAINS</a>
+            <a href="#portfolio" class="nav-link">> PORTFOLIO</a>
+            <a href="#socials" class="nav-link">> SOCIALS</a>
+            <button id="theme-toggle">[ TOGGLE THEME ]</button>
         </nav>
     </header>
 
     <main id="main-content" class="hidden">
-        <section id="about">
-            <h2>Welcome to Devious.work</h2>
-            <p>This is a corner of the internet for my projects and creations. Inspired by the web of the past, but built with modern technology.</p>
+        <section id="about" class="content-section">
+            <h2>// ABOUT</h2>
+            <p>Welcome to Devious.work. This is a digital canvas for projects, experiments, and various creations. Inspired by the command-line interfaces and aesthetics of a bygone web era, but built with a modern, accessible, and performant stack.</p>
         </section>
 
-        <section id="subdomains">
-            <h2>Subdomains</h2>
-            <p>Here are some of my other projects, hosted on subdomains:</p>
+        <section id="subdomains" class="content-section">
+            <h2>// SUBDOMAINS</h2>
+            <p>Active outposts on the devious.work domain. These are manually curated links to various ongoing projects and archives.</p>
             <ul>
-                <li><a href="https://project1.devious.work" target="_blank">project1.devious.work</a></li>
-                <li><a href="https://another.devious.work" target="_blank">another.devious.work</a></li>
-                <li><a href="https://secret.devious.work" target="_blank">secret.devious.work</a></li>
+                <li><a href="https://project1.devious.work" target="_blank" rel="noopener noreferrer">[ project1.devious.work ]</a> - A brief on what this subdomain hosts.</li>
+                <li><a href="https://another.devious.work" target="_blank" rel="noopener noreferrer">[ another.devious.work ]</a> - Description for the second project.</li>
+                <li><a href="https://secret.devious.work" target="_blank" rel="noopener noreferrer">[ secret.devious.work ]</a> - Information about this private space.</li>
             </ul>
         </section>
 
-        <section id="portfolio">
-            <h2>Portfolio</h2>
+        <section id="portfolio" class="content-section">
+            <h2>// PORTFOLIO</h2>
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <h3>Project One</h3>
-                    <p>A description of the first project.</p>
+                    <h3>Project 'Phoenix'</h3>
+                    <p>A web-based utility for data visualization. Built with vanilla JS and advanced CSS techniques for a high-performance experience.</p>
+                    <span class="item-status">[ STATUS: ONLINE ]</span>
                 </div>
                 <div class="portfolio-item">
-                    <h3>Project Two</h3>
-                    <p>A description of the second project.</p>
+                    <h3>Project 'Hydra'</h3>
+                    <p>An exploration into procedural content generation. This project creates unique artistic patterns based on user-defined seeds.</p>
+                    <span class="item-status">[ STATUS: ARCHIVED ]</span>
                 </div>
                 <div class="portfolio-item">
-                    <h3>Project Three</h3>
-                    <p>A description of the third project.</p>
+                    <h3>Project 'Cerberus'</h3>
+                    <p>A lightweight, secure authentication module designed for static sites, enabling protected content without a backend.</p>
+                    <span class="item-status">[ STATUS: IN-DEV ]</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer id="socials" class="hidden">
-        <h2>Connect With Me</h2>
-        <ul>
-            <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
-            <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
-            <li><a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
+    <footer id="socials" class="content-section hidden">
+        <h2>// SOCIALS</h2>
+        <ul class="social-links">
+            <li><a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
         </ul>
+        <p class="footer-text">Devious.work - Est. 2024</p>
     </footer>
 
     <script src="main.js"></script>
