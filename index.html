@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devious.work</title>
+    <meta name="description" content="Welcome to Devious.work - A retro-inspired corner of the internet.">
+    <meta name="author" content="Devious">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Devious.work">
+    <meta property="og:description" content="A retro-inspired corner of the internet.">
+    <meta property="og:image" content="https://devious.work/og-image.png">
+    <meta property="og:url" content="https://devious.work">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Devious.work">
+    <meta name="twitter:description" content="A retro-inspired corner of the internet.">
+    <meta name="twitter:image" content="https://devious.work/og-image.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div id="initialization-screen" class="active">
+        <pre id="ascii-art" aria-hidden="true">
+██████╗ ███████╗██╗   ██╗██╗ ██████╗ ██╗   ██╗
+██╔══██╗██╔════╝██║   ██║██║██╔═══██╗██║   ██║
+██║  ██║█████╗  ██║   ██║██║██║   ██║██║   ██║
+██║  ██║██╔══╝  ╚██╗ ██╔╝██║██║   ██║██║   ██║
+██████╔╝███████╗ ╚████╔╝ ██║╚██████╔╝╚██████╔╝
+╚═════╝ ╚══════╝  ╚═══╝  ╚═╝ ╚═════╝  ╚═════╝
+        </pre>
+        <div id="init-text">Initializing system...</div>
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+        <button id="enter-button" class="hidden">Enter</button>
+    </div>
+
+    <header id="main-header" class="hidden">
+        <nav>
+            <a href="#about">About</a>
+            <a href="#subdomains">Subdomains</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#socials">Socials</a>
+            <button id="theme-toggle">Toggle Theme</button>
+        </nav>
+    </header>
+
+    <main id="main-content" class="hidden">
+        <section id="about">
+            <h2>Welcome to Devious.work</h2>
+            <p>This is a corner of the internet for my projects and creations. Inspired by the web of the past, but built with modern technology.</p>
+        </section>
+
+        <section id="subdomains">
+            <h2>Subdomains</h2>
+            <p>Here are some of my other projects, hosted on subdomains:</p>
+            <ul>
+                <li><a href="https://project1.devious.work" target="_blank">project1.devious.work</a></li>
+                <li><a href="https://another.devious.work" target="_blank">another.devious.work</a></li>
+                <li><a href="https://secret.devious.work" target="_blank">secret.devious.work</a></li>
+            </ul>
+        </section>
+
+        <section id="portfolio">
+            <h2>Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <h3>Project One</h3>
+                    <p>A description of the first project.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>Project Two</h3>
+                    <p>A description of the second project.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>Project Three</h3>
+                    <p>A description of the third project.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="socials" class="hidden">
+        <h2>Connect With Me</h2>
+        <ul>
+            <li><a href="https://twitter.com/yourusername" target="_blank">Twitter</a></li>
+            <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+            <li><a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
+        </ul>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

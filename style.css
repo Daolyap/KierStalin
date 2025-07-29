@@ -1,0 +1,160 @@
+/* style.css */
+:root {
+    --primary-color: #0f0;
+    --background-color: #000;
+    --text-color: #fff;
+    --font-family: 'Courier New', Courier, monospace;
+}
+
+[data-theme="light"] {
+    --primary-color: #00f;
+    --background-color: #fff;
+    --text-color: #000;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+#initialization-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: opacity 1s;
+}
+
+#initialization-screen.active {
+    opacity: 1;
+}
+
+#initialization-screen:not(.active) {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+#ascii-art {
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-align: center;
+}
+
+#init-text {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+#progress-bar-container {
+    width: 50%;
+    height: 20px;
+    border: 1px solid var(--primary-color);
+    margin-top: 1rem;
+}
+
+#progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: var(--primary-color);
+    transition: width 2s ease-in-out;
+}
+
+#enter-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-family);
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+#enter-button.hidden {
+    display: none;
+}
+
+#main-header, #main-content, #socials {
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#main-header.hidden, #main-content.hidden, #socials.hidden {
+    display: none;
+}
+
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+#subdomains ul li a, #socials ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+
+.portfolio-item {
+    border: 1px solid var(--primary-color);
+    padding: 1rem;
+}
+
+#socials {
+    text-align: center;
+}
+
+#theme-toggle {
+    font-family: var(--font-family);
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 600px) {
+    #ascii-art {
+        font-size: 0.8rem;
+    }
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+}
